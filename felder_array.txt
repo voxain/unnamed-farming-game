@@ -1,0 +1,10 @@
+[0]=besät?
+[1]=Wachstumsstufe
+[2]=gerntet?
+[3]=gedüngt?
+[4]=in besitz?
+[5]=weizen?
+[6]=mais?
+[7]=treibhaus?
+[8]=farmland?
+[9]=insektenplage?

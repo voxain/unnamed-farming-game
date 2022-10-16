@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Marcel+Renes Spiel ohne Namen</title>
+		<script type="text/javascript" src="game.js"></script>
+		<script type="text/javascript" src="alert.js"></script>
+		<style>
+			.buttons {
+				width:50px;
+				height:50px;
+				border-width:0px;
+				background:transparent;
+			}
+			.felder {
+				width:50px;
+				height:50px;
+			}
+			.header {
+				background:gray;
+			}
+			.display {
+				background:transparent;
+				border-width:0px;
+			}
+		</style>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/alert.css">
+		<meta charset="utf-8">
+	<head>
+	<body onload="laden()" id="body" background="grass.png">
+		<section id="loading_screen" bgcolor="black"><img style="width:100%;height:100%" src="11357wide.jpg"></img> </section>
+		<section style="display:none" id="menue"><center><font face="X-Files" color="white" size="7px"><h1><big>Spiel ohne Namen</big></h1><button style="border-radius:17px;font-family:Arial;font-size:30px;width:200px;height:55px;background:brown;border-width:0px;background: url('701.bmp') no-repeat right;" onclick="spielfeldshow()">Starten</button></font></center></section>
+		<section style="display:none" id=spielfeld>
+			<section class=header><img src="icons/coins.png"></img>:<INPUT TYPE=BUTTON ID=GELD class="display"></input><img src="icons/clock.png"></img>:<input type=button id=time class="display"></input></SECTION>
+		</section>
+	</body>
+</html>

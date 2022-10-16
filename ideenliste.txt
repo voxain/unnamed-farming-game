@@ -1,0 +1,7 @@
+ideenliste:
+kartenspiel
+würfelspiel
+ls-spiel
+überbieten(5 über 3)
+mit 10 zum sieg
+treppensteigen

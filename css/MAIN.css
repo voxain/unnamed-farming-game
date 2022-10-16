@@ -1,0 +1,265 @@
+			@import url("../fonts/OpenSans-Light.ttf");
+			@import OpenSans-Light.ttf;
+			body,html {
+				margin: 0px;
+				font-family:Open Sans Light;
+				opacity:1;
+			}
+			#headline{
+				animation:headline3d 4s ease infinite;
+				height:200px;
+			}
+			/*-webkit-transform: scale3d(0, 0, 0);*/
+			@keyframes headline3d{
+				0%{transform:scale3d(1,1,1)}
+				50%{transform:scale3d(0.9,0.9,0.9)}
+				100%{transform:scale3d(1,1,1)}
+			}
+			@-webkit-keyframes shopIn {
+				/*0%   { opacity:1;right:1600px;left:-1600px; };
+				50%   { opacity:1;right:600px;left:-600px; };
+				100% { opacity:1;right:30px;left:30px };*/
+				0% {opacity:1;-webkit-transform: scale3d(0, 0, 0);}
+				100% {opacity:1;-webkit-transform: scale3d(1, 1, 1);}
+			}
+			@-webkit-keyframes clouds {
+				100% { background-position:0px 1024px }
+				0%   { background-position:0px 0px;}
+			}
+			@-webkit-keyframes scaleFields {
+				0% { -webkit-transform:scale3d(1.2,1.2,1.2);opacity:1; }
+				100% { -webkit-transform:scale3d(1,1,1);opacity:0.7; }
+			}
+			@-webkit-keyframes buttonsUp {
+				0%   { -webkit-transform:scale3d(2,2,2) }
+				100% { -webkit-transform:scale3d(10,10,10) }
+			}
+			@-webkit-keyframes buttonsDown {
+				0%   { -webkit-transform:scale3d(10,10,10) }
+				100% { -webkit-transform:scale3d(1,1,1) }
+			}
+			@-webkit-keyframes upDown {
+				0%   { margin-top:0px }
+				50% { margin-top:20px }
+				100% { margin-top:0px }
+			}
+			@-webkit-keyframes fieldHover {
+				0%   { -webkit-transform:scale3d(1,1,1);opacity:0.7 }
+				1% { -webkit-transform:scale3d(1.2,1.2,1.2);opacity:1}
+				100% { -webkit-transform:scale3d(1.2,1.2,1.2);opacity:1}
+			}
+			@-webkit-keyframes driveIn {
+				0%   { opacity:0.5;width:0px }
+				70%   { width:220px }
+				100% { opacity:1;width:200px }
+			}
+			@-webkit-keyframes driveOut {
+				0%   { opacity:1;width:200px }
+				30%   { opacity:1;width:220px }
+				100% { opacity:0.5;width:20px }
+			}
+			@-webkit-keyframes kamin {
+				0%   { background-position:320px 0px;}
+				100% { background-position:0px 0px; }
+			}
+			@-webkit-keyframes glänzen {
+				0%   { background-position-x:323px}
+				20% { background-position-x:0px }
+				100% { background-position-x:0px }
+			}
+			@-webkit-keyframes rotate {
+				0%   { -webkit-transform: rotate(0deg); }
+				100% { -webkit-transform: rotate(90deg); }
+			}
+			@-webkit-keyframes treggadrive {
+				0%   { margin-left:0%;margin-top:0%;height:32px }
+				3%   { margin-left:0%;margin-top:0%;height:64px }
+				5%   { margin-left:0%;margin-top:0%;height:32px }
+				10% { margin-left:30%;-webkit-transform:rotate(0deg) }
+				13% { margin-left:30%;-webkit-transform:rotate(0deg) }
+				17% { margin-left:30%;margin-top:0%;-webkit-transform:rotate(45deg) }
+				26% { margin-left:60%;margin-top:40%;-webkit-transform:rotate(45deg) }
+				1000% { margin-left:30%;margin-top:30%;-webkit-transform:rotate(0deg) }
+			}
+			@-webkit-keyframes audOut {
+				0%   { width:40px }
+				100% {width:300px }
+			}
+			@-webkit-keyframes audIn {
+				0%   { width:300px }
+				100% {width:40px }
+			}
+			
+			@-webkit-keyframes butIn {
+				0%   { -webkit-transform:scale3d(2,2,2) }
+				100% { -webkit-transform:scale3d(1,1,1) }
+			}
+			@keyframes nacht {
+				0%   { opacity:1 }
+				100% { opacity:0.5 }
+			}
+			@keyframes tag {
+				0%   { opacity:0.5 }
+				100% { opacity:1 }
+			}
+			.action {
+				height:24px;
+				width: 200px;
+				background:gray;
+				font-family:Arial;
+				-webkit-animation:actIn 0.3s linear;
+				position:normal;
+				border:none;
+			}
+			@-webkit-keyframes actIn {
+				0%{background:#c0c0c0}
+				100%{background:gray}
+			}
+			@-webkit-keyframes actHover {
+				100%{background:#c0c0c0}
+				0%{background:gray}
+			}
+			.action:focus {
+				outline:none
+			}
+			.action:hover {
+				outline:none;
+				height:24px;
+				width: 200px;
+				background:#c0c0c0;
+				border:none;
+				font-weight:bold;
+				-webkit-animation:actHover 0.3s linear
+			}
+			.achie {
+				width:128px;
+				height:128px;
+				opacity:0.5
+			}
+			.buttons {
+				width:50px;
+				height:50px;
+				border-width:0px;
+				background:transparent;
+			}
+			.startbut {
+			overflow:hidden;
+			border-radius:17px;
+			font-family:Open Sans Light,Ubuntu Light,Segoe UI Light, Open Sans, Ubuntu, Segoe UI, Arial, Loma;
+			font-size:20px;
+			width:200px;
+			height:55px;
+			background:brown;
+			border-width:0px;
+			background: url('../701.bmp') no-repeat right;
+			cursor:pointer;
+			transition:0.1s ease;
+			}
+			.startbut:hover {
+			overflow:hidden;
+				transform:scale3d(1.3,1.3,1.3)
+			}
+			.startbut:focus {
+				transform:scale3d(50,50,10);
+				transition:1s ease;
+				 outline: none
+			}
+			.brand{transition:0.3s ease;bottom:0px;}
+			.brand:hover{
+				transform:scale3d(1.3,1.3,1.1);
+			}
+			.header {
+			font-family:Open Sans Light;
+				background:gray;
+				position:fixed;
+				width:100%;
+				height:17px;
+				top:0px;
+			}
+			checkbox {
+				background:gray
+			}
+			checkbox:checked {
+				background:green
+			}
+			checkbox:hover {
+				background:white
+			}
+			.felder {
+			opacity:0.7;
+			cursor:not-allowed;
+				width:106px;
+				height:106px;
+				z-index:11;
+				-webkit-animation: scaleFields 0.3s ease-in;
+			}
+			.felder:hover {
+				-webkit-animation: fieldHover 20s linear infinite;
+				z-index:12;
+			}
+			.display {
+			font-family:Arial;
+				background:transparent;
+				border-width:0px;
+			}
+			.display:focus{
+				outline:none
+			}
+			audio {
+				width:40px;
+				-webkit-animation: audIn 0.4s ease-out;
+			}
+			audio:hover {
+				width:300px;
+				-webkit-animation: audOut 0.4s ease-out;
+			}
+			.shop {
+				-webkit-animation: shopIn 0.4s cubic-bezier(0, 0, 0.33, 1.34);
+				opacity: 1;
+				top: 30px;
+				bottom: 30px;
+				right: 30px;
+				left: 30px;
+				background: white;
+				display: none;
+				position: fixed;
+				box-shadow: 20px 20px 40px rgba(0,0,0,10);
+				padding: 20px;
+			}
+			.shopimage {
+				width: 126px;
+				height: 126px;
+				margin: 0px 0px 0px 0px;
+			}
+			@-webkit-keyframes shopbutout {
+				0% {background:gray}
+				50% {background:white}
+				100% {background:gray}
+			}
+			.shopbutton {
+				cursor:cell;
+				width: 126px;
+				text-align: left;
+			}
+			.shopbutton:hover {
+			-webkit-animation:shopbutout 1s linear infinite;
+				cursor:cell;
+				width: 126px;
+				text-align: left;
+			}
+			@-webkit-keyframes weather {
+				0% {left:-20%}
+				35% {left:0px}
+				75% {left:0px}
+				100% {left:-20%}
+			}
+			.weather {
+				display:none;
+				position:fixed;
+				left:-20%;
+				top:0%;
+				-webkit-animation:weather 3s ease-out;
+			}
+			.closebutton {
+				-webkit-animation:rotate 0.5s linear infinite;
+			}

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<!--input type="file"></input-->
+		<title>Marcel+Renes Spiel ohne Namen</title>
+		<script type="text/javascript" src="tutorial.js"></script>
+		<script type="text/javascript" src="alert.js"></script>
+		<script type="text/javascript" src="check.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+		<script type="text/javascript" src="tips.js"></script>
+		<link rel="shortcut icon" href="icons/Iconsmind-Outline-Tractor.ico" />
+		<link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/st.css">
+		<link rel="stylesheet" id=200 href="css/MAIN.css">
+		<link rel="stylesheet" href="css/alert.css">
+		<meta charset="utf-8">
+	<head>
+	<body onload="laden()" id="body">
+	<center><section id=bodyd style="overflow:hidden"><div id=bgg style="background:url('grass.png');position:fixed;height:100%;width:100%"><div id=clouds style="display:none;background:url('data/images/env/clouds.png');position:absolute;width:100%;height:100%;-webkit-animation: clouds 50s linear infinite"></div>
+	<audio id=catbri loop="true" src="data/music/CatBriarRoad.mp3"></audio><audio id=regen loop="true" volume="20" src="data/sfx/pink noise.mp3"></audio><audio id=cash src="data/sfx/Coin.wav"></audio><audio id=load src="data/music/music.mp3"></audio><audio id=grubber src="data/sfx/cultivatorSound.wav"></audio><audio id=erfolg src="data/sfx/Jingle7.wav"></audio><audio id=ach src="data/sfx/Jingle9.wav"></audio><audio id=sae src="data/sfx/fruitPreparer.wav"></audio><audio id=ernte src="data/sfx/airBlowerLoop.wav"></audio><audio id=start src="data/sfx/buehrer6135_start.wav"onended="document.getElementById('run').play()"></audio><audio loop="true" id=run src="data/sfx/buehrer6135_idle.wav"></audio><audio id=stop src="data/sfx/buehrer6135_stop.wav"></audio><audio id=xmas loop="true"onended="document.getElementById('dogblu').play()" src="data/music/xmas_music.mp3"></audio>
+		<section style="display:none;position:fixed;align:center;width:40%;left:30%;right:30%" id="menue">
+		<center>
+		<font face="Segoe Print" color="white" size="7px">
+		<h1><big>Farm Hero</big></h1>
+		<button class=startbut onclick="spielfeldshow(500)">Starten</button></br>
+		<img src="icons/arrow.png" style="-webkit-transform:rotate(90deg);-webkit-animation:upDown 2s ease infinite"></img></br><font color=black>Klicke zuerst auf Start!</font></br>
+		</section></section></font>
+		<section style="display:block" id="loading_screen" bgcolor="black">
+		<noscript>Scheint,als hättest Du Javascript Deaktiviert!</br>Bitte aktiviere Js in deinen Browsereinstellungen!</noscript><img src="data/video/nvidia.gif"></img></br><img src="ajax-loader.gif"height="27px"></img><input class="display"style="font-size:30px"id=tip type="button"></input><audio src="data/video/nvidia.ogg" autoplay id=intro></audio>
+		</section></center>
+		<section style="display:none;position:fixed" id=spielfeld>
+			<img class="weather" id=moon src="data/images/env/moon.png"></img><img class="weather" id=sun src="data/images/env/sun.png"></img>
+			<section id=actionlist style="-webkit-animation: driveIn 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);position:fixed;right:0px;height:100%;width:200px;background:url('data/images/farmland_dry.png')"></br><font color="white" face="Segoe UI Semibold">Aktionen</font></br>
+				<button id=1 class="action" onclick="statusleiste('Feld grubbern');setaction(1)"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.0s;background:gray">Feld grubbern</button></br>
+				<nobr><button style="width:130px;border-right:0px;border-bottom-color:#dddddd;text-align:right" id=3 onclick="statusleiste('Feld besäen');setaction(3)"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.1s;">Feld besäen</button><select style="border-color:#dddddd;border-bottom-color:#888888;border-right-color:#888888;border-type:solid;border-width:2px;background:gray;color:black;border-left:0px;height:21px;width:70px" id=saat onchange="changeobj()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.1s;"><option value=wheat>Weizen</option><option value=maize>Mais</option></select></nobr></br>
+				<button class="action" id=2 onclick="statusleiste('Feld ernten');setaction(2)"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.2s;">Feld ernten</button></br>
+				<nobr><button style="width:130px;border-right:0px;border-bottom-color:#dddddd;text-align:right" id=4 onclick="statusleiste('Feld spritzen');setaction(4)"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.3s;">Feld spritzen</button><select style="border-color:#dddddd;border-bottom-color:#888888;border-right-color:#888888;border-type:solid;border-width:2px;background:gray;color:black;border-left:0px;height:21px;width:70px" id=flussigkeit style="-webkit-animation: scaleFields 0.3s ease-out 1 0.3s;"><!--<option value=wasser>Wasser</option>--><option value=insektenvern style="-webkit-animation: scaleFields 0.3s ease-out 1 0.1s;">Insektenvernichter</option></select></nobr></br>
+				<button class="action" id=6 onclick="statusleiste('Gebäude abreißen');alert ('Achtung!','Das kostet dich jedes Mal $20!');setaction(6)"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.4s;">Gebäude abreißen</button></br>
+				<button class="action" onclick="statusleiste('Der FarmerShop');shop()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.5s;"><img src="icons/cart.png"></img>Shop</button>
+				<button class="action" onclick="statusleiste('Einstellungen');settings()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.6s;"><img src="icons/cog.png"></img>Einstellungen</button></br>
+				<button class="action" onclick="showachs()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.6s;"><img height="16px" src="icons/star.png"></img>Erfolge</button></br>
+				<button class="action"onclick="setaction(404);" onmouseover="statusleiste('Klicke hier, wenn du mal nicht weiterweißt.')"id=404 style="-webkit-animation: scaleFields 0.3s ease-out 1 0.6s;"><img src="icons/question.png"></img>Brauchst du Hilfe?</button></br>
+				<button class="action" id=timebutton onmouseover="statusleiste('Eine Runde übrspringen')" style="display:none" onclick="rundenzeit=100;checkfields()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.7s;">Zeit überspringen</button>
+				<button class="action" id=tag onmouseover="statusleiste('Die Nacht übrspringen')" style="display:none" onclick="tagmachen()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.8s;">Tag</button>
+				<button class="action" id=nacht onmouseover="statusleiste('Den Tag übrspringen')" style="display:none" onclick="nachtmachen()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.9s;">Nacht</button>
+				<button class="action" id=SONNE onmouseover="statusleiste('Wetter zu Regen ändern')" style="display:none" onclick="regen()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.9s;"><img height="16"src="data/images/env/icons/rain.png"></img>Regen</button>
+				<button class="action" id=regen_but onmouseover="statusleiste('Wetter zu Sonne ändern')" style="display:none" onclick="clean()"style="-webkit-animation: scaleFields 0.3s ease-out 1 0.9s;"><img height="16"src="data/images/env/icons/sun.png">Sonne</button>
+				<button class=action onmouseover="statusleiste('Diese Liste verstecken');" onclick="minimize()"style="-webkit-animation: scaleFields 0.3s ease-out 1 1s;">Aktionsleiste verstecken</button>
+			</section>
+			<section id=minilist style="display:none;-webkit-animation: driveOut 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);position:fixed;right:0px;height:100%;opacity:0.5;width:20px;background:url('data/images/farmland_dry.png')"></br><button class="action" style="width:20px;height:400px" onmouseover="statusleiste('Diese Liste anzeigen');" onclick="maximize()">A</br>k</br>t</br>i</br>o</br>n</br>s</br>l</br>e</br>i</br>s</br>t</br>e</br>z</br>e</br>i</br>g</br>e</br>n</button></section>
+			<section class=header><img src="icons/coins.png"></img>:<INPUT TYPE=BUTTON ID=geld class="display"></input><img src="icons/clock.png"></img>:<input style="width:40px" type=button id=time class="display"></input>‖<img height=16px width=16px src="icons/wheat.png"></img>:<input type=button id=wheat class="display"></input><img height=16px width=16px src="icons/maize.png"></img>:<input type=button id=maize class="display"></input>‖<img height=16px width=16px src="icons/seeds.png"></img>:<input type=button id=seeds class="display"></input><img height=16px width=16px src="data/images/bugKiller.png"></img>:<input type=button id=bugKiller class="display"></input>  <image height="16px"width="16px"id="env"src="data/images/env/icons/sun.png"></image><button style="background:transparent;border-width:0px;font-family:Open Sans;font-weight:bold;" id=statusleiste>Nichts ausgewählt</button></SECTION>
+			</br><section style="line-height:0.3;margin-top:30px;">
+			<img onmouseover="statusleiste('Dein Haus')" height=61px src="data/images/felder/farmerHouse.png" ></img></br>
+			<img onmouseover="statusleiste('Feld 1')" id=feld1 class="felder"onclick="feldaction(1)" src="data/images/felder/land.png"></img></img><img onmouseover="statusleiste('Feld 2')" id=feld2 class="felder"onclick="feldaction(2)" src="data/images/felder/land.png"></img><img onmouseover="statusleiste('Feld 3')" id=feld3 class="felder"onclick="feldaction(3)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 4')" id=feld4 class="felder"onclick="feldaction(4)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 5')" id=feld5 class="felder"onclick="feldaction(5)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 6')" id=feld6 class="felder"onclick="feldaction(6)" src="data/images/felder/land_add.png"></img></br>
+			<img onmouseover="statusleiste('Feld 7')" id=feld7 class="felder"onclick="feldaction(7)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 8')" id=feld8 class="felder"onclick="feldaction(8)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 9')" id=feld9 class="felder"onclick="feldaction(9)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 10')" id=feld10 class="felder"onclick="feldaction(10)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 11')" id=feld11 class="felder"onclick="feldaction(11)" src="data/images/felder/land_add.png"></img></br>
+			<img onmouseover="statusleiste('Feld 12')" id=feld12 class="felder"onclick="feldaction(12)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 13')" id=feld13 class="felder"onclick="feldaction(13)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 14')" id=feld14 class="felder"onclick="feldaction(14)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 15')" id=feld15 class="felder"onclick="feldaction(15)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 16')" id=feld16 class="felder"onclick="feldaction(16)" src="data/images/felder/land_add.png"></img></br>
+			<img onmouseover="statusleiste('Feld 17')" id=feld17 class="felder"onclick="feldaction(17)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 18')" id=feld18 class="felder"onclick="feldaction(18)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 19')" id=feld19 class="felder"onclick="feldaction(19)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 20')" id=feld20 class="felder"onclick="feldaction(20)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 21')" id=feld21 class="felder"onclick="feldaction(21)" src="data/images/felder/land_add.png"></img> </br>
+			<img onmouseover="statusleiste('Feld 22')" id=feld22 class="felder"onclick="feldaction(22)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 23')" id=feld23 class="felder"onclick="feldaction(23)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 24')" id=feld24 class="felder"onclick="feldaction(24)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 25')" id=feld25 class="felder"onclick="feldaction(25)" src="data/images/felder/land_add.png"></img></br>
+			<section id="zusatzfelder" style="display:none">
+			<img onmouseover="statusleiste('Feld 26')" id=feld26 class="felder"onclick="feldaction(26)" src="data/images/felder/land.png"></img><img onmouseover="statusleiste('Feld 27')" id=feld27 class="felder"onclick="feldaction(27)" src="data/images/felder/land.png"></img><img onmouseover="statusleiste('Feld 28')" id=feld28 class="felder"onclick="feldaction(28)" src="data/images/felder/land.png"></img><img onmouseover="statusleiste('Feld 29')" id=feld29 class="felder"onclick="feldaction(29)" src="data/images/felder/land.png"></img></br>
+			<img onmouseover="statusleiste('Feld 30')" id=feld30 class="felder"onclick="feldaction(30)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 31')" id=feld31 class="felder"onclick="feldaction(31)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 32')" id=feld32 class="felder"onclick="feldaction(32)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 33')" id=feld33 class="felder"onclick="feldaction(33)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 34')" id=feld34 class="felder"onclick="feldaction(34)" src="data/images/felder/land_add.png"></img><img onmouseover="statusleiste('Feld 35')" id=feld35 class="felder"onclick="feldaction(35)" src="data/images/felder/land_add.png"></img></br></section>
+			</br><nobr><div title="Stadtville" onmouseover="statusleiste('Stadtville')" style="background:url('neu.png');display:inline-block;-webkit-animation: glänzen 2s steps(5) infinite;height:64px;width:64px;" onclick="document.getElementById('stadt').style.display='block';if(tutstep==13){confirm('Nun Klicke auf die kleinen Marktstände.');tutstep=14}"></div></nobr></br>
+			</section>
+		</section>
+		<section class=shop id=settings style="display:none"><img style="height:64px;cursor:pointer" src="icons/wizard_cancel.png"  align="right" onclick='document.getElementById("settings").style.display="none"'></img>Musik:<button onclick="document.getElementById('musix').style.display='block'">Wählen</button><audio id=ambient loop="true" src="data/sfx/howlywind.wav"></audio></br>Wetter:<button onclick="weatherdummy=1000">Sonne wahrscheinlicher</button><button onclick="weatherdummy=200">Regen wahrscheinlicher</button></br>Steuerung:<button onclick="document.getElementById('ctrls').style.display='block'">Zeigen</button></br>Tips:<button onclick="tipalert()">Zeigen</button><!--<button onclick="savegame_state1_save()">Speichern</button>--></section>
+		<section class=shop id=musix><img style="height:64px;cursor:pointer" src="icons/wizard_cancel.png"  align="right" onclick='document.getElementById("musix").style.display="none"'></img>
+		Playlist wählen:</br>
+		<style>.musix{height:64px;width:64px}</style>
+		<img class=musix src="data/images/Icon_None.png" onclick="changestil('none')">Keine</img></br>
+		<img class=musix src="data/images/Icon_Misc.png" onclick="changestil('default')">Normal</img></br>
+		<img class=musix src="data/images/Icon_Default.png" onclick="changestil('ambient')">Nur Hintergrundgeräusche</img></br>
+		<img class=musix src="data/images/Icon_Rock.png" onclick="changestil('rock')">Rock</img></br>
+		<img class=musix src="data/images/Icon_Ambient.png" onclick="changestil('electro')"></img>Electro</br>
+		<!--Default--><audio class=aud id=dogblu  onended="document.getElementById('grow').play()" src="data/music/mac_desert_music.mp3"></audio> 		<audio id=grow  onended="document.getElementById('ples').play()" src="data/music/MyDogBlue.mp3"></audio> 		<audio onended="document.getElementById('dogblu').play()"  id=ples src="data/music/Pleasant Creek.ogg"></audio>
+		<!--Rock--><audio class=aud id=rock1  onended="document.getElementById('rock2').play()" src="data/music/rock1.mp3"></audio> 		<audio id=rock2 onended="document.getElementById('rock3').play()" src="data/music/rock3.mp3"></audio> 		<audio onended="document.getElementById('rock1').play()"  id=rock3 src="data/music/rock3.mp3"></audio>
+		<!--Electro--><audio class=aud id=electro1 onended="document.getElementById('electro2').play()" src="data/music/hardwellHollywood.mp3"></audio> 		<audio id=electro2  onended="document.getElementById('electro3').play()" src="data/music/ecuador2016.mp3"></audio> 		<audio onended="document.getElementById('electro1').play()"  id=electro3 src="data/music/Garrix_bouncybob.mp3"></audio>
+		</section><button hidden id=201></button>
+		<section id=ctrls class=shop>Steuerung<img style="height:64px;cursor:pointer" src="icons/wizard_cancel.png"  align="right" onclick='document.getElementById("ctrls").style.display="none"'></img></br></BR><img src="data/images/keys.png"></img></br>Aktionen wählen:Tasten 1-5</br>Erfolge ansehen:Taste E</br>Musik pausieren:Leertaste</br>Spiel Pausieren:Taste P/Taste 'Untbr'</br></br></section>
+		
+		
+		
+		
+		<section id="shop_menu_1" class="shop">
+			<font face="Segoe Script">SHOP</font><img src="icons/building.png"></img><font face="Arial">
+			<img style="height:64px;cursor:pointer" src="icons/wizard_cancel.png"  align="right" onclick='document.getElementById("shop_menu_1").style.display="none"'></img></br><button style="background:gray">Seite 1-Kleine Landmaschinen</button><button onclick='showshop(2)'>Seite 2-Gebäude</button><button onclick='showshop(3)'>Seite 3-Material</button></br>
+			Köckerling Trio 300 M (Grubber)</br><img class="shopimage" src="data/tools/koeckerling_300_trio_m.png">Du besitzt:<input class="display"type=button id=kockt300az></input></img></br><button onclick="kaufen(grubber[0],200)" class="shopbutton">Kaufen($200)</button></br>
+			New Holland TC5 90 (Mähdrescher)</br><img class="shopimage" src="data/tools/new_holland_tc5_90.png">Du besitzt:<input class="display"type=button id=nhtc590></input></img></br><button onclick="kaufen(maehdresch[0],1000)" class="shopbutton">Kaufen($1000)</button></br>
+			Pöttinger Vitasem 302 Add (Sämaschine)</br><img class="shopimage" src="data/tools/poettinger_vitasem_302_add.png">Du besitzt:<input class="display"type=button id=poetvi302></input></img></br><button onclick="kaufen(saemasch[0],500)" class="shopbutton">Kaufen($500)</button></br>
+			Amazone UF 1801 (Spritze)</br><img class="shopimage" src="data/tools/amazone_uf_1801.png">Du besitzt:<input class="display"type=button id=amaui1801></input></img></br><button onclick="kaufen(spritze[0],250)" class="shopbutton">Kaufen($250)</button></br>
+			<p style="position:fixed;top:80px;right:44px" align=right>
+			Hürlimann H488 (Schlepper)</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/tools/huerlimann_h488.png"></br><button onclick="kaufen(traktor[0],2500)" class="shopbutton">Kaufen($2500)</button></br>
+			Brantner E8041 (Kipper) Kapazität:20 Einheiten</br>Du besitzt:<input class="display"type=button id=brante8041></input></img><img class="shopimage" src="data/tools/brantner_e8041.png"></br><button onclick="kaufen(haenger[0],200)" class="shopbutton">Kaufen($200)</button></br>
+			Krampe Big Body 900s (Kipper) Kapazität:50 Einheiten</br>Du besitzt:<input class="display"type=button id=krampe900s></input></img><img class="shopimage" src="data/tools/krampe_bigbody_900s.png"></br><button onclick="kaufen(haenger[1],600)" class="shopbutton">Kaufen($600)</button></br>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br></p>
+			</font>
+		</section>
+		<section id="shop_menu_2" class="shop">
+			<font face="Segoe Script">SHOP</font><img src="icons/building.png"></img><font face="Arial">
+			<img style="height:64px;cursor:pointer" src="icons/wizard_cancel.png"  align="right" onclick='document.getElementById("shop_menu_2").style.display="none"'></img></br><button onclick="showshop(1)">Seite 1-Kleine Landmaschinen</button><button style="background:gray">Seite 2-Gebäude</button><button onclick='showshop(3)'>Seite 3-Material</button></br>
+			Treibhaus (Tomaten) $30 pro Runde</br><img class="shopimage" src="data/images/felder/treibhausgroß.png">Du besitzt:<input class="display"type=button id=tomatentreibhaus></input></img></br><button onclick="treibhausbuy()" class="shopbutton">Kaufen($500)</button></br>
+			Coffeshop($20 pro Runde)</br></img><img class="shopimage" title="COFFESHOP - Bringt dir $20 Euro Pro Runde ein! Schalte ihn durch den" src="data/images/felder/cantine.png">Du besitzt:<input class="display"type=button id=coffeshop></input></br><button id=coffeeshopbutton onclick="buycoffeeshop()" class="shopbutton">Zuerst Freischalten!</button></br>
+			-----</br></img><img class="shopimage" src="data/images/unavailable.png">Du besitzt:<input class="display"type=button id=huerlh488></input></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			-----</br></img><img class="shopimage" src="data/images/unavailable.png">Du besitzt:<input class="display"type=button id=huerlh488></input></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			<p style="position:fixed;top:80px;right:44px" align=right>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br></p>
+			</font>
+		</section>
+		<section id="shop_menu_3" class="shop">
+			<font face="Segoe Script">SHOP</font><img src="icons/building.png"></img><font face="Arial">
+			<img style="height:64px;cursor:pointer" src="icons/wizard_cancel.png"  align="right" onclick='document.getElementById("shop_menu_3").style.display="none"'></img></br><button onclick="showshop(1)">Seite 1-Kleine Landmaschinen</button><button onclick="showshop(2)">Seite 2-Gebäude</button><button style="background:gray">Seite 3-Material</button></br>
+			Saatgut (Weizen)</br><img class="shopimage" src="icons/seeds.png">Du besitzt:<input class="display"type=button id=wheatseeds></input></img></br><button onclick="kaufen(saatgut[0],10)" class="shopbutton">Kaufen($10)</button></br>
+			-----</br></img><img class="shopimage" src="data/images/unavailable.png">Du besitzt:<input class="display"type=button id=huerlh488></input></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			bugKiller™ Insektenvernichter Pro (1 Liter)</br><img class="shopimage" src="data/images/bugKiller_bottle.png">Du besitzt:<input class="display"type=button id=bugKillerShop></input></img></br><button onclick="kaufen(fluid[0],200)" class="shopbutton">Kaufen($200)</button></br>
+			Wasser (20 Liter)</br><img class="shopimage" src="data/images/water_bottle.png">Du besitzt:<input class="display"type=button id=wasser></input></img></br><button onclick="kaufen()" class="shopbutton">Kaufen($200)</button></br>
+			<p style="position:fixed;top:80px;right:44px" align=right>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br>
+			-----</br>Du besitzt:<input class="display"type=button id=huerlh488></input></img><img class="shopimage" src="data/images/unavailable.png"></br><button onclick="kaufen()" class="shopbutton">Kaufen($---)</button></br></p>
+			</font>
+		</section>
+		<section id=stadt class=shop style="background:url('grass.png')">
+		<img class="closebutton" src="icons/cancel.png" align="right" onclick='document.getElementById("stadt").style.display="none"'></img>
+		Stadtville</br>
+		<div id=rathaus onmouseover="statusleiste('Rathaus')" style="background:url('Stadthauskamin.png');display:inline-block;-webkit-animation: kamin 1s steps(5) infinite;height:50px;width:64px;" onclick="rathausex()" src="Stadthauskamin.png"></div>
+		<div id=markt onmouseover="statusleiste('Marktplatz')" onclick="sellwheat()" style="height:128px;width:128px;background:url('data/images/Markt.png')"></div>
+		<img>
+		</section>
+		<section id=achs class="shop">
+		<img style="height:64px;cursor:pointer" src="icons/wizard_cancel.png"  align="right" onclick='document.getElementById("achs").style.display="none"'></img>
+			<font size="5px">Erfolge</font></br>Halte deinen Cursor über eines der Symbole, um die Beschreibung zu sehen.</br>
+			<image class=achie id=5feld src="data/images/achs/5felder.png"title="5 Felder:Besitze 5 Felder."></image><image class=achie id=15feld src="data/images/achs/15felder.png"title="15 Felder:Besitze 15 Felder."></image><image class=achie id=25feld src="data/images/achs/25felder.png"title="25 Felder:Besitze 25 Felder."></image><image class=achie id=35feld src="data/images/achs/35felder.png"title="35 Felder:Besitze 35 Felder-Alle Felder des Spiels!"></image><hr /><image class=achie id=neureich src="data/images/achs/10k.png"title="Neureich:Besitze 10000 Münzen!"></image><image class=achie id=zaster src="data/images/achs/50k.png"title="Eine Menge Zaster:Besitze 50000 Münzen!"></image><image class=achie id=arbeiter src="data/images/achs/100k.png"title="Minenarbeiter:Besitze 100000 Münzen!"></image><image class=achie id=millionen src="data/images/achs/1m.png"title="Die erste Millionen:Besitze 1000000 Münzen!"></image><hr />
+			<image class=achie id=10rund src="data/images/achs/10rund.png"title="10 Runden:Halte 10 Runden lang durch!"></image><image class=achie id=50rund src="data/images/achs/50rund.png"title="50 Runden:Halte 50 Runden lang durch!"></image><image class=achie id=100rund src="data/images/achs/100rund.png"title="100 Runden:Halte 100 Runden lang durch! Hast du nichts besseres zu tun?"></image><image class=achie id=1000rund src="data/images/achs/1000rund.png"title="PRO-Gamer:Halte 1000 Runden lang durch! Du bist echt unheimlich! Falls du nicht gecheatet hast..."></image><hr />
+			<image class=achie id=shopper src="data/images/achs/shopper.png"title="Shopping Queen: Kaufe etwas im Shop!"></image><image class=achie id=shopper src="data/images/achs/rot.png"title="Voll ins... rote?: Verkaufe dein Getreide zum höchsten möglichen Marktpreis!"></image><image class=achie id=tuto_ach src="data/images/achs/tutorial.png"title="Schlaumeier: Beende das Tutorial"></image><image class=achie id=evrissing src="data/images/achs/alleerfolge.png"title="Alle Erfolge: Schließe alle Erfolge ab!(Bis auf diesen hier, denn das wäre ja irgendwie wie ein Teufelskreis...)"></image>
+		</section>
+		</div>
+		</section>
+	</body>
+</html>
